@@ -1,0 +1,76 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+body{
+    background: #76b852;
+    font-family: 'Roboto', sans-serif;
+}
+
+a{
+    text-decoration: none; 
+}
+
+.form__container{
+    margin: 150px auto;
+    max-width: 360px;
+    width: 100%;
+    background: #FFFFFF;
+    border: none;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form__container__inner{
+    width: 70%;
+    height: 80%;
+    margin: 0px auto;
+    padding: 40px;
+}
+
+.form__input{
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0px 10px 0px;
+    box-sizing: border-box;
+    border: none;
+    background: #f2f2f2;
+    font-family: 'Roboto', sans-serif;
+}
+
+.form__input::placeholder{
+    font-size: 14px;
+}
+
+.form__button{
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+    padding: 15px;
+    background-color: mediumseagreen;
+    border: none;
+    color: white;
+    font-family: 'Roboto';
+}
+
+.reg__link{
+    text-align: center;
+    font-size: 12px;
+    color: #b3b3b3;
+}
+
+.reg__link a{
+    color: #4CAF50;
+}
+
+.errorList{
+    list-style: none;
+    list-style-position: initial;
+    list-style-image: initial;
+    list-style-type: none;
+    padding: unset;
+}
+
+.validation__error{
+    border-left: red solid 5px;
+    font-family: 'Roboto';
+    font-size: 12px;
+    padding-left: 5px;
+    color: #b3b3b3;
+}
