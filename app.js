@@ -1,23 +1,35 @@
 var express = require('express');
+var indexRouter = require('./routes/indexRouter');
+var mySQL = require("./dbConnectionController");
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
 var app = express();
+
+const bodyParser = require("body-parser");
+var urlencodedParser = bodyParser.urlencoded({extended: true});
+app.use(urlencodedParser);
+app.use(bodyParser.json());
 
 app.use(express.static(__dirname));
 app.set("view engine", "ejs");
 
-app.get("/", function(req, res){
-    res.redirect("/login");
+mySQL.connection.connect(function(err){
+    if(err){
+        console.log(err);
+    }
+    console.log("DB connected!");
 });
 
-app.get("/login", function(req, res){
-    res.render("index.ejs");
-});
+var mySqlStore = new MySQLStore({}, mySQL.connection);
+module.exports.store = mySqlStore;
 
-app.get("/signup", function(req, res){
-    res.render("sign__in__page.ejs");
-});
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+    store: mySqlStore
+}));
 
-app.get("/loginSubmit", function(req, res){
-    res.send("success");
-}); 
+app.use("/", indexRouter);
 
-app.listen(3000);
+app.listen(3000);   

@@ -74,9 +74,11 @@ window.onload = function(){
             username,
             password
         }
+
+        var jsonData = JSON.stringify(data);
         var value = validateForm();
         if(value){
-            sendFormData(data, "/login");
+            sendFormData(jsonData, "/login");
         }
     }
 

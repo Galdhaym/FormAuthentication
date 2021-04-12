@@ -83,17 +83,20 @@ window.onload = function(){
     }
 
     function sendFormData(data, url){
-        sendRequest(data, url, function(){console.log("success")});
+        sendRequest(data, url, function(){
+            clearErrors();
+            setError(this.response);
+        });
     }
 
     function sendRequest(data, url, callback){
         var xhr = new XMLHttpRequest();
         xhr.open('POST', url);
         
-        xhr.responseType = 'json';
+        xhr.setRequestHeader("Content-type", "application/json");
         xhr.send(data);
 
-        xhr.onload = callback();
+        xhr.onload = callback;
     }
 
     var formButton = document.querySelector("#signin__submit");
@@ -106,9 +109,10 @@ window.onload = function(){
             password,
             email
         }
+        var jsonData = JSON.stringify(data);
         var value = validateForm();
         if(value){
-            sendFormData(data, "/signup");
+            sendFormData(jsonData, "/signup");
         }
     }
 }

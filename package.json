@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dmitriy Zlatov",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "password-hash": "^1.2.2"
+  }
 }
