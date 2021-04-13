@@ -4,7 +4,17 @@ var passwordHash = require('password-hash');
 module.exports.AuthLogin = function(req, res, next){
     var username = req.body.username;
     var password = req.body.password;
-
+    var userData = {username, password};
+    selectUserFromDB(userData).then(result=>{
+        next();
+    }).catch((err)=>{
+        if(err instanceof Error){
+            throw err;
+        }
+        else{
+            res.send(err);
+        }
+    });
 }
 
 module.exports.AuthSignUp = function(req, res, next){
@@ -88,7 +98,20 @@ function selectUserFromDB(userData){
     return new Promise((resolve, reject)=>{
         var query = "SELECT * FROM userData WHERE username = ?";
         mySQL.connection.query(query, userData.username, function(err, result){
-
+            if(err){
+                reject(err);
+            }
+            else if(result.length > 0){
+                if(passwordHash.verify(userData.password, result[0].password)){
+                    resolve(true);
+                }
+                else{
+                    reject("Username or password is invalid!");
+                }
+            }
+            else{
+                reject("Username or password is invalid!");
+            }
         });
     });
 }
