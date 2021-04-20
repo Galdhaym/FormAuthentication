@@ -1,10 +1,4 @@
 window.onload = function(){
-    // for (const property in data) {
-    //     properties = properties + "&" + property + "=" + data[property];
-    // }
-    // properties = properties.replace("&", "?");
-    // url = url + properties;
-
     function setError(message){
         var errorList = document.querySelector(".errorList");
         if(!errorList){
@@ -84,8 +78,8 @@ window.onload = function(){
 
     function sendFormData(data, url){
         sendRequest(data, url, function(){
-            clearErrors();
-            setError(this.response);
+                clearErrors();
+                setError(this.response);
         });
     }
 
@@ -95,7 +89,6 @@ window.onload = function(){
         
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.send(data);
-
         xhr.onload = callback;
     }
 

@@ -17,6 +17,14 @@ router.get("/signup", session.sessionMiddleware, function(req, res){
     res.redirect("/profile");
 });
 
+router.get("/profile", session.sessionMiddleware, function(req, res){
+    res.render("profile.ejs");
+});
+
+router.get("/edit", session.sessionMiddleware, function(req, res){
+    res.render("editProfile.ejs");
+});
+
 router.post("/login", validation.validateLoginForm, postController.AuthLogin, sessionController.createSession);
 
 router.post("/signup", validation.validateSignUpForm, postController.AuthSignUp, sessionController.createSession);

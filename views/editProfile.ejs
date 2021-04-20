@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../editProfile_styles.css">
+    <title>Edit Profile</title>
+</head>
+<body>
+    <div class="edit__profile__container">
+        <div class="edit__profile__middle__container">
+            <div class="edit__profile__inner__top">
+                <div class="profile__title">
+                    <h2>Profile</h2>
+                </div>
+                <hr size = "1" id = "hr__line">
+            </div>
+            <div class="edit__profile__inner__bottom">
+                    <div class="avatar__part">
+                        <div class="avatar__image__container">
+                            <img class = "avatar__image" src="../28732529ec5d0cf15dc92abf84027fb2eacabe87_00 — копия.jpg" alt="">
+                            <input type="file" name="" id="imageReader">
+                            <div class="edit__avatar__button">
+                                <img src="../pencil-square.svg" alt="" class="pencil">
+                                <p class="edit__avatar__text">Edit</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class = "edit__profile__form">
+                        <div class="form__part">
+                            <p>Username:</p>
+                            <input type="text" name="" id="username">
+                        </div>
+                        <div class="form__part">
+                            <p>Age:</p>
+                            <input type="text" name="" id="age">
+                        </div>
+                        <div class="form__part">
+                            <p>Description:</p>
+                            <textarea id = "description"></textarea>
+                        </div>
+                        <div class="update__profile__part">
+                            <button id = "updateProfile">Update profile</button>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
