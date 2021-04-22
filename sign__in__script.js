@@ -76,24 +76,46 @@ window.onload = function(){
         return value;
     }
 
+    function handlerPostRequest(){
+        if(this.status === 200){
+            loadProfilePage();
+        }
+        else if(this.status === 400){
+            clearErrors();
+            setError(this.response);
+            console.clear();
+        }
+    }
+
     function sendFormData(data, url){
-        sendRequest(data, url, function(){
-                clearErrors();
-                setError(this.response);
+        sendRequest(data, url, "POST", handlerPostRequest);
+    }
+
+    function loadProfilePage(){
+        sendRequest("", "/profile", "GET", function(){
+            if(this.status === 200){
+                document.write(this.response);
+            }
         });
     }
 
-    function sendRequest(data, url, callback){
+    function sendRequest(data, url, type, callback){
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', url);
+        xhr.open(type, url);
         
         xhr.setRequestHeader("Content-type", "application/json");
-        xhr.send(data);
+        if(type === "POST"){
+            xhr.send(data);
+        }
+        else if(type === "GET"){
+            xhr.send();
+        }
+
         xhr.onload = callback;
     }
 
     var formButton = document.querySelector("#signin__submit");
-    formButton.onclick = function(e){
+    formButton.onclick = function(){
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
         var email = document.getElementById("email").value;

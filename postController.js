@@ -12,7 +12,7 @@ module.exports.AuthLogin = function(req, res, next){
             throw err;
         }
         else{
-            res.send(err);
+            res.status(400).send(err);
         }
     });
 }
@@ -32,7 +32,7 @@ module.exports.AuthSignUp = function(req, res, next){
                 throw err;
             }
             else{
-                res.send(err);
+                res.status(400).send(err);
             }
         });
     }).catch(function(err){
@@ -40,7 +40,7 @@ module.exports.AuthSignUp = function(req, res, next){
             throw err;
         }
         else{
-            res.send(err);
+            res.status(400).send(err);
         }
     });
 }
