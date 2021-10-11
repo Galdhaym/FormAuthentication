@@ -1,14 +1,27 @@
 {
-  "name": "formvalidation",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Dmitriy Zlatov",
-  "license": "ISC",
-  "dependencies": {
-    "password-hash": "^1.2.2"
-  }
+	"name": "formvalidation",
+	"version": "1.0.0",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"author": "Dmitriy Zlatov",
+	"license": "ISC",
+	"dependencies": {
+		"ejs": "^3.1.6",
+		"express": "^4.17.1",
+		"fs": "0.0.1-security",
+		"multer": "^1.4.2",
+		"password-hash": "^1.2.2"
+	},
+	"devDependencies": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Galdhaym/AuthenticationForm.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Galdhaym/AuthenticationForm/issues"
+	},
+	"homepage": "https://github.com/Galdhaym/AuthenticationForm#readme",
+	"description": ""
 }

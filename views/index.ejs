@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
-    <link rel="stylesheet" href="../styles.css">
-</head>
-<body>
-    <div class="page">
-        <div class="form__container">
-            <div class="form__container__inner">
-                <form>
-                    <input class = "form__input" type="text" id = "username" name = "username" placeholder="username" required> 
-                    <input class = "form__input" type="text" id = "password" name = "password" placeholder="password" required>
-                    <input class = "form__button" type="button" value="LOGIN" id = "login__submit">
-                </form>
-                <p class = "reg__link">Not registered? <a href="/signup">Sign in</a></p>
-            </div>
-        </div>
-    </div>
-    <script src="../login__script.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>LOGIN</title>
+		<link rel="stylesheet" href="../css/styles.css" />
+	</head>
+	<body>
+		<div class="page">
+			<div class="form__container">
+				<div class="form__container__inner">
+					<form id="login__form">
+						<input class="form__input" type="text" id="username" name="username" placeholder="username" required />
+						<input class="form__input" type="text" id="password" name="password" placeholder="password" required />
+						<input class="form__button" type="submit" value="LOGIN" id="login__submit" />
+					</form>
+					<p class="reg__link">Not registered? <a href="/signup">Sign in</a></p>
+				</div>
+			</div>
+		</div>
+		<script src="../js/login__script.js"></script>
+	</body>
 </html>
