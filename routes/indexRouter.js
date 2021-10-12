@@ -52,4 +52,6 @@ router.post(
 	}
 );
 
+router.post("/delete", session.sessionMiddleware, sessionController.deleteSession);
+
 module.exports = router;

@@ -88,7 +88,7 @@ window.onload = function () {
 	editProfileButton.onclick = function (e) {
 		e.preventDefault();
 		var value = validateForm();
-		if (value && imageBinaryFile) {
+		if (value) {
 			var username = document.getElementById("username").value;
 			var age = document.getElementById("age").value;
 			var description = document.getElementById("description").value;

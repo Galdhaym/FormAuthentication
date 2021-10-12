@@ -27,7 +27,7 @@ module.exports.AuthSignUp = function (req, res, next) {
 	var email = req.body.email;
 	var password = req.body.password;
 	var userID = uuid.v1();
-	var defaultAvatar = "netero.jpg";
+	const defaultAvatar = "netero.jpg";
 	var userData = { userID, username, email, password, defaultAvatar };
 	selectAllEmailsFromDB(email)
 		.then(function (result) {
@@ -70,34 +70,24 @@ module.exports.updateUserInfo = function (req, res, next) {
 	var age = req.body.age;
 	var description = req.body.description;
 	var avatar = req.file;
-	var mimeType = avatar.mimetype;
-	var splitedMimeType = mimeType.split("/");
-	console.log(splitedMimeType);
-	var fileExtension = "." + splitedMimeType[1];
+	const defaultAvatar = "netero.jpg";
 	var session = res.locals.userSession;
 	var userID = session.userID;
-	console.log(avatar);
 
-	getController.selectUserDataFromDB(userID).then((result) => {
-		var avatarIntoTable = result[0].avatar;
-		if (avatarIntoTable !== null) {
-			var avatarID = uuid.v1();
-			var newAvatar = avatarID + fileExtension;
-			var toPath = "uploads/" + newAvatar;
-			if (avatarIntoTable === "netero.jpg") {
-				fs.writeFile(toPath, avatar.buffer).then((value) => {
-					var userData = { userID, username, age, description, newAvatar };
-					updateUserInfoIntoTable(userData)
-						.then((result) => {
-							next();
-						})
-						.catch((err) => {
-							throw err;
-						});
-				});
-			} else {
-				var fromPath = "uploads/" + avatarIntoTable;
-				fs.rename(fromPath, toPath).then((value) => {
+	if (avatar) {
+		var mimeType = avatar.mimetype;
+		var splitedMimeType = mimeType.split("/");
+		console.log(splitedMimeType);
+		var fileExtension = "." + splitedMimeType[1];
+		console.log(avatar);
+
+		getController.selectUserDataFromDB(userID).then((result) => {
+			var avatarIntoTable = result[0].avatar;
+			if (avatarIntoTable !== null) {
+				var avatarID = uuid.v1();
+				var newAvatar = avatarID + fileExtension;
+				var toPath = "uploads/" + newAvatar;
+				if (avatarIntoTable === defaultAvatar) {
 					fs.writeFile(toPath, avatar.buffer).then((value) => {
 						var userData = { userID, username, age, description, newAvatar };
 						updateUserInfoIntoTable(userData)
@@ -108,10 +98,33 @@ module.exports.updateUserInfo = function (req, res, next) {
 								throw err;
 							});
 					});
-				});
+				} else {
+					var fromPath = "uploads/" + avatarIntoTable;
+					fs.rename(fromPath, toPath).then((value) => {
+						fs.writeFile(toPath, avatar.buffer).then((value) => {
+							var userData = { userID, username, age, description, newAvatar };
+							updateUserInfoIntoTable(userData)
+								.then((result) => {
+									next();
+								})
+								.catch((err) => {
+									throw err;
+								});
+						});
+					});
+				}
 			}
-		}
-	});
+		});
+	} else {
+		getController.selectUserDataFromDB(userID).then((result) => {
+			var avatarIntoTable = result[0].avatar;
+			var newAvatar = avatarIntoTable;
+			var userData = { userID, username, age, description, newAvatar };
+			updateUserInfoIntoTable(userData).then((result) => {
+				next();
+			});
+		});
+	}
 };
 
 function updateUserInfoIntoTable(userData) {

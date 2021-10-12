@@ -4,3 +4,9 @@ module.exports.createSession = function (req, res) {
 	req.session.status = "user";
 	res.redirect("/profile");
 };
+
+module.exports.deleteSession = function (req, res) {
+	req.session.destroy(function (err) {
+		res.redirect("/login");
+	});
+};
