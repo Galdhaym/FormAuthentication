@@ -158,7 +158,8 @@ a {
 		float: none;
 	}
 
-	hr {
+	.action__profile__part {
+		padding-bottom: 30px;
 	}
 }
 
@@ -170,6 +171,10 @@ a {
 	.avatar__image {
 		height: 100% !important;
 		width: 100% !important;
+	}
+
+	.action__profile__part {
+		padding-bottom: 30px;
 	}
 }
 
@@ -191,6 +196,6 @@ a {
 	}
 
 	.action__profile__part {
-		padding-bottom: 10px;
+		padding-bottom: 30px;
 	}
 }
