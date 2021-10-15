@@ -153,6 +153,32 @@ a {
 	float: right;
 }
 
+.profileWasEditedContainer {
+	background-color: oldlace;
+	border-bottom: solid 1px rgba(84, 174, 255, 0.4);
+	width: 100%;
+}
+
+.profileWasEditedContainerInner {
+	padding: 15px 15px 15px 15px;
+	max-width: 180px;
+	margin: auto;
+}
+
+#profileWasEditedElement {
+	padding: 15px 15px 15px 0px;
+	margin-left: auto;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+}
+
+#closeProfileWasEditedPanel {
+	display: inline;
+	height: 17px;
+	width: 17px;
+	vertical-align: text-top;
+	cursor: pointer;
+}
+
 @media screen and (max-width: 1448px) {
 	.avatar__part {
 		float: none;

@@ -73,7 +73,39 @@ window.onload = function () {
 	}
 
 	function sendFormData(data, url) {
-		sendRequest(data, url, function () {});
+		sendRequest(data, url, function () {
+			clearProfileWasUpdatedPanel();
+			var editProfileContainer = document.querySelector(".edit__profile__container");
+			var profileMiddleContainer = document.querySelector(".edit__profile__middle__container");
+
+			var profileWasEditedContainer = document.createElement("div");
+			profileWasEditedContainer.className = "profileWasEditedContainer";
+
+			var profileWasEditedContainerInner = document.createElement("div");
+			profileWasEditedContainerInner.className = "profileWasEditedContainerInner";
+
+			var profileWasEditedElement = document.createElement("span");
+			profileWasEditedElement.id = "profileWasEditedElement";
+			profileWasEditedElement.textContent = "Profile was updated!";
+
+			var closeProfileWasEditedPanel = document.createElement("img");
+			closeProfileWasEditedPanel.id = "closeProfileWasEditedPanel";
+			closeProfileWasEditedPanel.src = "../images/krest.png";
+			closeProfileWasEditedPanel.addEventListener("click", function () {
+				editProfileContainer.removeChild(profileWasEditedContainer);
+			});
+
+			profileWasEditedContainerInner.appendChild(profileWasEditedElement);
+			profileWasEditedContainerInner.appendChild(closeProfileWasEditedPanel);
+			profileWasEditedContainer.appendChild(profileWasEditedContainerInner);
+			editProfileContainer.insertBefore(profileWasEditedContainer, profileMiddleContainer);
+		});
+	}
+
+	function clearProfileWasUpdatedPanel() {
+		var editProfileContainer = document.querySelector(".edit__profile__container");
+		var profileWasEditedContainer = document.querySelector(".profileWasEditedContainer");
+		if (profileWasEditedContainer) editProfileContainer.removeChild(profileWasEditedContainer);
 	}
 
 	function sendRequest(data, url, callback) {
